@@ -47,6 +47,15 @@ export default function App() {
 
   const [score, setScore] = useState(0);
 
+  const [scoreList, setScoreList] = useState(0);
+
+  const reStart = (score) => {
+    setScoreList(scoreList + score);
+    setCurrentQuestion(0);
+    setShowScore(false);
+    setScore(0);
+  };
+
   const handleClick = (isCorrect) => {
     if (isCorrect === true) {
       setScore(score + 1);
@@ -65,6 +74,7 @@ export default function App() {
       {showScore ? (
         <div className="score-section">
           You scored {score} out of {questions.length}
+          <button onClick={() => reStart(score)}>Restart Quiz</button>
         </div>
       ) : (
         <>
